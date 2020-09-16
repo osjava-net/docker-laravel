@@ -38,7 +38,7 @@ services:
     container_name: laravel_php_fpm
     image: laravel_php_fpm:${APP_PHP_VERSION}
     volumes:
-      - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
+      - ./php-fpm/php${APP_PHP_VERSION}.ini:/usr/local/etc/php/php.ini
       - docker-in-docker:/certs/client
     expose:
       - "9000"
