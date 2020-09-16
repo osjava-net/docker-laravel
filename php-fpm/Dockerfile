@@ -53,6 +53,8 @@ RUN set -eux; \
     docker-php-ext-install gd; \
     php -r 'var_dump(gd_info());'
 
+ARG APP_PHP_VERSION
+
 RUN set -xe; \
     apt-get update -yqq && \
     pecl channel-update pecl.php.net && \
