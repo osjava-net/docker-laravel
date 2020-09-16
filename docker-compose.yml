@@ -67,7 +67,6 @@ services:
     container_name: laravel_nginx
     image: laravel_nginx
     volumes:
-      - ${NGINX_DEFAULT_SITE_PATH}:/var/www/public
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
