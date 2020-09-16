@@ -61,8 +61,8 @@ services:
         - CHANGE_SOURCE=${CHANGE_SOURCE}
         - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
         - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
-        - http_proxy
-        - https_proxy
+#        - http_proxy
+#        - https_proxy
         - no_proxy
     container_name: laravel_nginx
     image: laravel_nginx
@@ -72,8 +72,8 @@ services:
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
     ports:
       - "${NGINX_HOST_HTTP_PORT}:80"
-      - "${NGINX_HOST_HTTPS_PORT}:443"
-      - "${VARNISH_BACKEND_PORT}:81"
+#      - "${NGINX_HOST_HTTPS_PORT}:443"
+#      - "${VARNISH_BACKEND_PORT}:81"
     depends_on:
       - php-fpm
     networks:
