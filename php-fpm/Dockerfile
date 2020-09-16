@@ -54,6 +54,7 @@ RUN set -eux; \
     php -r 'var_dump(gd_info());'
 
 RUN set -xe; \
+    apt-get update -yqq && \
     pecl channel-update pecl.php.net && \
     apt-get install -yqq \
       apt-utils \
@@ -69,7 +70,11 @@ RUN set -xe; \
       #
       # next lines are here becase there is no auto build on dockerhub see https://github.com/laradock/laradock/pull/1903#issuecomment-463142846
       libzip-dev zip unzip && \
-      docker-php-ext-configure zip; \
+      if [ ${PHP_VERSION} = "7.3" ] || [ ${PHP_VERSION} = "7.4" ]; then \
+        docker-php-ext-configure zip; \
+      else \
+        docker-php-ext-configure zip --with-libzip; \
+      fi && \
       # Install the zip extension
       docker-php-ext-install zip && \
       php -m | grep -q 'zip'
