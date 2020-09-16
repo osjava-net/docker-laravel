@@ -6,7 +6,23 @@ networks:
   backend:
     driver: ${NETWORKS_DRIVER}
 
+volumes:
+  docker-in-docker:
+    driver: ${VOLUMES_DRIVER}
+
 services:
+  docker-in-docker:
+    image: docker:19.03-dind
+    environment:
+      DOCKER_TLS_SAN: DNS:docker-in-docker
+    privileged: true
+    volumes:
+      - docker-in-docker:/certs/client
+    expose:
+      - 2375
+    networks:
+      - backend
+
   php-fpm:
     build:
       context: ./php-fpm
@@ -58,16 +74,4 @@ services:
       - php-fpm
     networks:
       - frontend
-      - backend
-
-  docker-in-docker:
-    image: docker:19.03-dind
-    environment:
-      DOCKER_TLS_SAN: DNS:docker-in-docker
-    privileged: true
-    volumes:
-      - docker-in-docker:/certs/client
-    expose:
-      - 2375
-    networks:
       - backend
