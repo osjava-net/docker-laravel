@@ -35,6 +35,7 @@ services:
         - http_proxy
         - https_proxy
         - no_proxy
+    container_name: laravel_php_fpm
     volumes:
       - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
       - docker-in-docker:/certs/client
@@ -62,6 +63,7 @@ services:
         - http_proxy
         - https_proxy
         - no_proxy
+    container_name: laravel_nginx
     volumes:
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
