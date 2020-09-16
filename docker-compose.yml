@@ -28,7 +28,7 @@ services:
       context: ./php-fpm
       args:
         - CHANGE_SOURCE=${CHANGE_SOURCE}
-        - PHP_VERSION=${PHP_VERSION}
+        - APP_PHP_VERSION=${APP_PHP_VERSION}
         - PUID=${PHP_FPM_PUID}
         - PGID=${PHP_FPM_PGID}
         - LOCALE=${PHP_FPM_DEFAULT_LOCALE}

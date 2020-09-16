@@ -1,5 +1,5 @@
-ARG PHP_VERSION
-FROM php:${PHP_VERSION}-fpm
+ARG APP_PHP_VERSION
+FROM php:${APP_PHP_VERSION}-fpm
 
 # Set Environment Variables
 ENV DEBIAN_FRONTEND noninteractive
@@ -70,7 +70,7 @@ RUN set -xe; \
       #
       # next lines are here becase there is no auto build on dockerhub see https://github.com/laradock/laradock/pull/1903#issuecomment-463142846
       libzip-dev zip unzip && \
-      if [ ${PHP_VERSION} = "7.3" ] || [ ${PHP_VERSION} = "7.4" ]; then \
+      if [ ${APP_PHP_VERSION} = "7.3" ] || [ ${APP_PHP_VERSION} = "7.4" ]; then \
         docker-php-ext-configure zip; \
       else \
         docker-php-ext-configure zip --with-libzip; \
@@ -98,7 +98,7 @@ RUN pecl install -o -f redis; \
       && rm -rf /tmp/pear \
       && docker-php-ext-enable redis
 
-RUN set -xe; php -v | head -n 1 | grep -q "PHP ${PHP_VERSION}."
+RUN set -xe; php -v | head -n 1 | grep -q "PHP ${APP_PHP_VERSION}."
 
 #
 #--------------------------------------------------------------------------
