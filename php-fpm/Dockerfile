@@ -96,7 +96,7 @@ RUN apt-get install -y \
       pngquant \
       gifsicle
 
-RUN pecl install -o -f redis; \
+RUN pecl install -o -f redis \
       && rm -rf /tmp/pear \
       && docker-php-ext-enable redis
 
