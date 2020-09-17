@@ -39,6 +39,7 @@ services:
     image: laravel_php_fpm:${APP_PHP_VERSION}
     volumes:
       - ./php-fpm/php${APP_PHP_VERSION}.ini:/usr/local/etc/php/php.ini
+      - ${APP_CODE_PATH_HOST}:/var/www
       - docker-in-docker:/certs/client
     expose:
       - "9000"
@@ -67,7 +68,7 @@ services:
     container_name: laravel_nginx
     image: laravel_nginx
     volumes:
-      - ${NGINX_DEFAULT_SITE_PATH}:/var/www/public
+      - ${APP_CODE_PATH_HOST}:/var/www
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
