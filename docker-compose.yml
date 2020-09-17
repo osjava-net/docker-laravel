@@ -86,3 +86,15 @@ services:
     networks:
       - frontend
       - backend
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
+    working_dir: /var/www
+    depends_on:
+      - php-fpm
+    networks:
+      - frontend
+      - backend
