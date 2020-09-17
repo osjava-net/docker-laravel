@@ -7,11 +7,11 @@ networks:
     driver: ${NETWORKS_DRIVER}
 
 volumes:
-  php-fpm:
+  php_fpm:
     driver: ${VOLUMES_DRIVER}
   nginx:
     driver: ${VOLUMES_DRIVER}
-  docker-in-docker:
+  docker_in_docker:
     driver: ${VOLUMES_DRIVER}
 
 services:
@@ -22,7 +22,7 @@ services:
       DOCKER_TLS_SAN: DNS:docker-in-docker
     privileged: true
     volumes:
-      - docker-in-docker:/certs/client
+      - docker_in_docker:/certs/client
     expose:
       - 2375
     networks:
