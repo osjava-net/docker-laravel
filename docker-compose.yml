@@ -17,6 +17,7 @@ volumes:
 services:
   docker-in-docker:
     image: docker:19.03-dind
+    container_name: shihua/docker-in-docker
     environment:
       DOCKER_TLS_SAN: DNS:docker-in-docker
     privileged: true
@@ -39,8 +40,8 @@ services:
         - http_proxy
         - https_proxy
         - no_proxy
-    container_name: laravel_php_fpm
-    image: laravel_php_fpm:${APP_PHP_VERSION}
+    container_name: shihua/php_fpm
+    image: shihua/php_fpm:${APP_PHP_VERSION}
     volumes:
       - ./php-fpm/php${APP_PHP_VERSION}.ini:/usr/local/etc/php/php.ini
       - ${APP_CODE_PATH_HOST}:/var/www
@@ -69,8 +70,8 @@ services:
 #        - http_proxy
 #        - https_proxy
         - no_proxy
-    container_name: laravel_nginx
-    image: laravel_nginx
+    container_name: shihua/nginx
+    image: shihua/nginx
     volumes:
       - ${APP_CODE_PATH_HOST}:/var/www
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
