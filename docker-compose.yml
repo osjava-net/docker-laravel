@@ -7,6 +7,10 @@ networks:
     driver: ${NETWORKS_DRIVER}
 
 volumes:
+  php-fpm:
+    driver: ${VOLUMES_DRIVER}
+  nginx:
+    driver: ${VOLUMES_DRIVER}
   docker-in-docker:
     driver: ${VOLUMES_DRIVER}
 
