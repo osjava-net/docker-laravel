@@ -78,7 +78,7 @@ services:
     container_name: shihua_nginx
     image: shihua/nginx
     volumes:
-      - app_root:/var/www
+#      - app_root:/var/www
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - nginx:/etc/nginx/conf.d
 #      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
