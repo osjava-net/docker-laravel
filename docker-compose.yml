@@ -110,6 +110,7 @@ services:
     container_name: app_example
     volumes:
       - app_root:/var/webapps
+      - nginx:/etc/nginx/conf.d
       - "./www:/var/webapps/example"
       - "./nginx.conf:/etc/nginx/conf.d/app.example.conf"
     depends_on:
