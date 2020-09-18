@@ -37,7 +37,7 @@ COPY logrotate/nginx /etc/logrotate.d/
 RUN echo "upstream php-upstream { server ${PHP_UPSTREAM_CONTAINER}:${PHP_UPSTREAM_PORT}; }" > /etc/nginx/conf.d/upstream.conf \
     && rm /etc/nginx/conf.d/default.conf
 
-COPY www/default /var/www/html
+COPY ./www /var/www/html
 COPY sites/default.conf /etc/nginx/conf.d/default.conf
 
 ADD ./startup.sh /opt/startup.sh
