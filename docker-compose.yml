@@ -13,6 +13,8 @@ volumes:
     driver: ${VOLUMES_DRIVER}
   docker_in_docker:
     driver: ${VOLUMES_DRIVER}
+  docker_lib:
+    driver: ${VOLUMES_DRIVER}
 
 services:
   docker-in-docker:
@@ -23,6 +25,7 @@ services:
     privileged: true
     volumes:
       - docker_in_docker:/certs/client
+      - docker_lib:/var/lib/docker
     expose:
       - 2375
     networks:
@@ -67,6 +70,8 @@ services:
         - CHANGE_SOURCE=${CHANGE_SOURCE}
         - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
         - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
+        - PUID=${PHP_FPM_PUID}
+        - PGID=${PHP_FPM_PGID}
 #        - http_proxy
 #        - https_proxy
         - no_proxy
