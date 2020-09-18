@@ -72,8 +72,8 @@ services:
         - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
         - PUID=${PHP_FPM_PUID}
         - PGID=${PHP_FPM_PGID}
-#        - http_proxy
-#        - https_proxy
+        #        - http_proxy
+        #        - https_proxy
         - no_proxy
     container_name: shihua_nginx
     image: shihua/nginx
@@ -81,7 +81,7 @@ services:
       - app_root:/var/webapps
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - nginx:/etc/nginx/conf.d
-#      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
+      #      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
     ports:
       - "${NGINX_HOST_HTTP_PORT}:80"
@@ -95,10 +95,27 @@ services:
     image: composer:latest
     container_name: composer
     volumes:
-      - app_root:/var/www
-    working_dir: /var/www
+      - app_root:/var/webapps
+    working_dir: /var/webapps
     depends_on:
       - php-fpm
+    networks:
+      - frontend
+      - backend
+
+  example:
+    image: app/example:latest
+    container_name: app_example
+    volumes:
+      - app_root:/var/webapps
+      - type: bind
+        source: "example/nginx.conf"
+        target: "/etc/nginx/conf.d/app.example.conf"
+      - type: bind
+        source: "./www"
+        target: "/var/webapps/example"
+    depends_on:
+      - nginx
     networks:
       - frontend
       - backend
