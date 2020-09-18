@@ -47,7 +47,7 @@ services:
     image: shihua/php_fpm:${APP_PHP_VERSION}
     volumes:
       - ./php-fpm/php${APP_PHP_VERSION}.ini:/usr/local/etc/php/php.ini
-      - app_root:/var/www
+      - app_root:/var/webapps
       - docker_in_docker:/certs/client
     expose:
       - "9000"
@@ -78,7 +78,7 @@ services:
     container_name: shihua_nginx
     image: shihua/nginx
     volumes:
-#      - app_root:/var/www
+      - app_root:/var/webapps
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
       - nginx:/etc/nginx/conf.d
 #      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
