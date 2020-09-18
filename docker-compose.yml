@@ -7,7 +7,7 @@ networks:
     driver: ${NETWORKS_DRIVER}
 
 volumes:
-  php_fpm:
+  app_root:
     driver: ${VOLUMES_DRIVER}
   nginx:
     driver: ${VOLUMES_DRIVER}
@@ -44,7 +44,7 @@ services:
     image: shihua/php_fpm:${APP_PHP_VERSION}
     volumes:
       - ./php-fpm/php${APP_PHP_VERSION}.ini:/usr/local/etc/php/php.ini
-      - ${APP_CODE_PATH_HOST}:/var/www
+      - app_root:/var/www
       - docker_in_docker:/certs/client
     expose:
       - "9000"
@@ -73,14 +73,13 @@ services:
     container_name: shihua_nginx
     image: shihua/nginx
     volumes:
-      - ${APP_CODE_PATH_HOST}:/var/www
+      - app_root:/var/www
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      - nginx:/etc/nginx/conf.d
 #      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
-      - ${NGINX_SSL_PATH}:/etc/nginx/ssl
+#      - ${NGINX_SSL_PATH}:/etc/nginx/ssl
     ports:
       - "${NGINX_HOST_HTTP_PORT}:80"
-#      - "${NGINX_HOST_HTTPS_PORT}:443"
-#      - "${VARNISH_BACKEND_PORT}:81"
     depends_on:
       - php-fpm
     networks:
@@ -91,7 +90,7 @@ services:
     image: composer:latest
     container_name: composer
     volumes:
-      - ${APP_CODE_PATH_HOST}:/var/www
+      - app_root:/var/www
     working_dir: /var/www
     depends_on:
       - php-fpm
