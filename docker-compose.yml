@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 networks:
   frontend:
@@ -104,15 +104,13 @@ services:
       - backend
 
   example:
+    working_dir: ./example
     image: app/example:latest
     container_name: app_example
     volumes:
-      - type: bind
-        source: "example/nginx.conf"
-        target: "/etc/nginx/conf.d/app.example.conf"
-      - type: bind
-        source: "./www"
-        target: "/var/webapps/example"
+      - app_root:/var/webapps
+      - www:/var/webapps/example
+      - nginx.conf:/etc/nginx/conf.d/app.example.conf
     depends_on:
       - nginx
     networks:
