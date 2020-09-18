@@ -39,7 +39,7 @@ RUN echo "upstream php-upstream { server ${PHP_UPSTREAM_CONTAINER}:${PHP_UPSTREA
 
 COPY sites/default.conf /etc/nginx/conf.d/default.conf
 
-COPY www/default/* /var/www/default/
+COPY www/default/* /var/www/html/
 
 ADD ./startup.sh /opt/startup.sh
 RUN sed -i 's/\r//g' /opt/startup.sh
