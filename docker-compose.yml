@@ -109,8 +109,8 @@ services:
     container_name: app_example
     volumes:
       - app_root:/var/webapps
-      - www:/var/webapps/example
-      - nginx.conf:/etc/nginx/conf.d/app.example.conf
+      - "./example/www:/var/webapps/example"
+      - "./example/nginx.conf:/etc/nginx/conf.d/app.example.conf"
     depends_on:
       - nginx
     networks:
