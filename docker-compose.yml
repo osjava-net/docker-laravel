@@ -107,7 +107,6 @@ services:
     image: app/example:latest
     container_name: app_example
     volumes:
-      - app_root:/var/webapps
       - type: bind
         source: "example/nginx.conf"
         target: "/etc/nginx/conf.d/app.example.conf"
