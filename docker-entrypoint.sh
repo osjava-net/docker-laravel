@@ -89,6 +89,8 @@ if [ -n "$SMTP" ]; then
     echo -e "defaults \nauth           off \ntls            off \nlogfile        ~/.msmtp.log \naccount        mailcatcher \nhost           ${SMTP} \nport           ${SMTP_PORT:-25} \nauto_from on \naccount default : mailcatcher" > /etc/msmtprc
 fi
 
+chown -R www-data:www-data /var/www
+
 #
 # Run
 
