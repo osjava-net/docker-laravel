@@ -16,12 +16,12 @@ if [ -d /etc/supervisor/conf.d ]; then
     supervisord -c /etc/supervisor/supervisord.conf
 fi
 
-if [ ! -z "$SCHEDULE" ] && [ ! -f /etc/cron.d/laravel-schedule ]; then
-    echo "* * * * * root $SCHEDULE" >> /etc/cron.d/laravel-schedule
-    chmod +x /etc/cron.d/laravel-schedule
+if [ ! -z "$SCHEDULE" ] && [ ! -f /etc/cron.d/app-schedule ]; then
+    echo "* * * * * root $SCHEDULE" >> /etc/cron.d/app-schedule
+    chmod +x /etc/cron.d/app-schedule
 fi
 
-if [ -f /etc/cron.d/laravel-schedule ]; then
+if [ -f /etc/cron.d/app-schedule ]; then
     /etc/init.d/cron start
 fi
 
