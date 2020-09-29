@@ -16,7 +16,7 @@ if [ -d /etc/supervisor/conf.d ]; then
     supervisord -c /etc/supervisor/supervisord.conf
 fi
 
-if [ $ENABLE_SCHEDULE = true ]; then
+if [ $ENABLE_SCHEDULE = true ] && [ ! -f /etc/cron.d/laravel-schedule ]; then
     echo "* * * * * root /usr/bin/php /var/www/artisan schedule:run >> /dev/null 2>&1" >> /etc/cron.d/laravel-schedule
     chmod +x /etc/cron.d/laravel-schedule
 fi
