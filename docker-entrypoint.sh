@@ -18,7 +18,7 @@ fi
 
 if [ $ENABLE_SCHEDULE = true ]; then
     echo "* * * * * root /usr/bin/php /var/www/artisan schedule:run >> /dev/null 2>&1" >> /etc/cron.d/laravel-schedule
-    chmod +x /etc/cron.d/larave-schedule
+    chmod +x /etc/cron.d/laravel-schedule
 fi
 
 #
