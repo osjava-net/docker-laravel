@@ -31,6 +31,7 @@ RUN apt-get update && \
         supervisor \
         zip \
         unzip \
+        cron \
         wget && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /etc/supervisor/* && \
