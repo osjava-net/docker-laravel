@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+  express_api:
+    driver: 'bridge'
+
+services:
+  app:
+    build:
+      context: ../docker
+      dockerfile: Dockerfile
+    image: shihua/laravel-php:7.4-apache
+    container_name: express_api
+    volumes:
+      - ".:/var/www"
+      - "./supervisor:/etc/supervisor/conf.d"
+    environment:
+      LOCALTIME:  '"Asia/Shanghai"'
+      PHP__display_errors: 'On'
+      PHP__opcache.enable: 'On'
+      PHP__memory_limit:   '128M'
+      PHP__post_max_size:  '50M'
+      PHP_php5enmod: 'opcache pdo_mysql gd zip bcmath '
+      HTTPD__DocumentRoot: '/var/www/public'
+      HTTPD__ServerAdmin: 'lidapeng@shihuacom.com'
+      HTTPD__AddDefaultCharset: 'UTF-8'
+      HTTPD__DirectoryIndex: 'index.php'
+      HTTPD_a2enmod:  'rewrite expires'
+      SCHEDULE: '/usr/local/bin/php /var/www/artisan schedule:run >> /dev/null 2>&1'
+    ports:
+      - 8000:80
+    networks:
+      - express_api
+    dns:
+      - 114.114.114.114
+      - 8.8.8.8
