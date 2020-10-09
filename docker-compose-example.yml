@@ -9,7 +9,7 @@ services:
     build:
       context: ../docker
       dockerfile: Dockerfile
-    image: shihua/laravel-php:7.4-apache
+    image: osjava/laravel-php:7.4-apache
     container_name: express_api
     volumes:
       - ".:/var/www"
@@ -22,7 +22,7 @@ services:
       PHP__post_max_size:  '50M'
       PHP_php5enmod: 'opcache pdo_mysql gd zip bcmath '
       HTTPD__DocumentRoot: '/var/www/public'
-      HTTPD__ServerAdmin: 'lidapeng@shihuacom.com'
+      HTTPD__ServerAdmin: 'lidp@osjava.net'
       HTTPD__AddDefaultCharset: 'UTF-8'
       HTTPD__DirectoryIndex: 'index.php'
       HTTPD_a2enmod:  'rewrite expires'
