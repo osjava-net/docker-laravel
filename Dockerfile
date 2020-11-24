@@ -23,7 +23,6 @@ RUN apt-get update && \
         libsqlite3-dev \
         libzip-dev \
         libonig-dev \
-        pcre-devel \
         curl \
         msmtp \
         mariadb-client \
