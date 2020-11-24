@@ -23,6 +23,7 @@ RUN apt-get update && \
         libsqlite3-dev \
         libzip-dev \
         libonig-dev \
+        pcre-devel \
         curl \
         msmtp \
         mariadb-client \
@@ -57,7 +58,8 @@ RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h && \
     docker-php-ext-install bcmath && \
     docker-php-ext-install zip && \
     docker-php-ext-install pcntl && \
-    docker-php-ext-install sockets
+    docker-php-ext-install sockets \
+    pecl install apc
 #    pecl install mongodb && \
 #    pecl install memcached && \
 #    pecl install redis && \
