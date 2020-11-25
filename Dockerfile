@@ -36,9 +36,7 @@ RUN apt-get update && \
 
 # ARG INSTALL_PYTHON2=false
 # RUN if [ '${INSTALL_PYTHON2}' = 'true' ]; then \
-RUN apt-get -y install python python-pip \
-    && python -m pip install --upgrade pip  \
-    && python -m pip install --upgrade virtualenv
+RUN apt-get -y install python3 python-pip
 # ;fi
 
 # ARG INSTALL_PYGMENTS=false
