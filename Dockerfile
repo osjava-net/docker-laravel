@@ -34,8 +34,8 @@ RUN apt-get update && \
         cron \
         wget
 
-ARG ENABLE_PYGMENTS=false
-RUN if [ ${ENABLE_PYGMENTS} = true ]; then \
+ARG INSTALL_PYGMENTS=false
+RUN if [ ${INSTALL_PYGMENTS} = true ]; then \
     apt-get install python-pygments \
 ;fi
 
