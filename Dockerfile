@@ -34,18 +34,18 @@ RUN apt-get update && \
         cron \
         wget
 
-# ARG INSTALL_PYTHON2
-# ENV INSTALL_PYTHON2 = ${INSTALL_PYTHON2}
-# RUN if [ ${INSTALL_PYTHON2} = true ]; then \
-#     apt-get -y install python python-pip python-dev build-essential  \
-#     && python -m pip install --upgrade pip  \
-#     && python -m pip install --upgrade virtualenv \
-# ;fi
+ARG INSTALL_PYTHON2
+ENV INSTALL_PYTHON2 ${INSTALL_PYTHON2}
+RUN if [ ${INSTALL_PYTHON2} = true ]; then \
+    apt-get -y install python python-pip python-dev build-essential  \
+    && python -m pip install --upgrade pip  \
+    && python -m pip install --upgrade virtualenv \
+;fi
 
 ARG INSTALL_PYGMENTS
-ENV INSTALL_PYGMENTS = ${INSTALL_PYGMENTS}
+ENV INSTALL_PYGMENTS ${INSTALL_PYGMENTS}
 RUN if [ ${INSTALL_PYGMENTS} = true ]; then \
-    apt-get -y install python-pygments \
+    pip install python-pygments \
 ;fi
 
 RUN rm -rf /var/lib/apt/lists/* && \
