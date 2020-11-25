@@ -36,7 +36,7 @@ RUN apt-get update && \
 
 ARG ENABLE_PYGMENTS=false
 RUN if [ ${ENABLE_PYGMENTS} = true ]; then \
-    apt-get install python3-pygments \
+    apt-get install python-pygments \
 ;fi
 
 RUN rm -rf /var/lib/apt/lists/* && \
