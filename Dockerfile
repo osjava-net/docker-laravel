@@ -32,8 +32,14 @@ RUN apt-get update && \
         zip \
         unzip \
         cron \
-        wget && \
-    rm -rf /var/lib/apt/lists/* && \
+        wget
+
+ARG ENABLE_PYGMENTS=false
+RUN if [ ${ENABLE_PYGMENTS} = true ]; then \
+    apt-get install python3-pygments \
+;fi
+
+RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /etc/supervisor/* && \
     wget https://getcomposer.org/download/1.9.1/composer.phar -O /usr/local/bin/composer && \
     chmod a+rx /usr/local/bin/composer
