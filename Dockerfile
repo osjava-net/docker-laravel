@@ -32,7 +32,6 @@ RUN apt-get update && \
         zip \
         unzip \
         cron \
-        pcre-devel \
         wget && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /etc/supervisor/* && \
@@ -58,11 +57,10 @@ RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h && \
     docker-php-ext-install bcmath && \
     docker-php-ext-install zip && \
     docker-php-ext-install pcntl && \
-    docker-php-ext-install sockets \
-    pecl install apc
-#    pecl install mongodb && \
-#    pecl install memcached && \
-#    pecl install redis && \
+    docker-php-ext-install sockets &&\
+    pecl install mongodb && \
+    pecl install memcached && \
+    pecl install redis
 #    pecl install xdebug
 
 ADD http://www.zlib.net/zlib-1.2.11.tar.gz /tmp/zlib.tar.gz
