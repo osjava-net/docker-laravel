@@ -32,6 +32,7 @@ RUN apt-get update && \
         zip \
         unzip \
         cron \
+        pcre-devel \
         wget && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /etc/supervisor/* && \
