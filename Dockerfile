@@ -34,15 +34,15 @@ RUN apt-get update && \
         cron \
         wget
 
-# ARG INSTALL_PYTHON2=false
-# RUN if [ '${INSTALL_PYTHON2}' = 'true' ]; then \
-RUN apt-get -y install python python-pip
-# ;fi
+ARG INSTALL_PYTHON2=false
+RUN if [ '${INSTALL_PYTHON2}' = 'true' ]; then \
+    apt-get -y install python python-pip \
+;fi
 
-# ARG INSTALL_PYGMENTS=false
-# RUN if [ '${INSTALL_PYGMENTS}' = 'true' ]; then \
-RUN pip install Pygments
-# ;fi
+ARG INSTALL_PYGMENTS=false
+RUN if [ '${INSTALL_PYGMENTS}' = 'true' ]; then \
+    pip install Pygments \
+;fi
 
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /etc/supervisor/* && \
