@@ -36,12 +36,12 @@ RUN apt-get update && \
 
 # ARG INSTALL_PYTHON2=false
 # RUN if [ '${INSTALL_PYTHON2}' = 'true' ]; then \
-RUN apt-get -y install python3 python-pip
+RUN apt-get -y install python python-pip
 # ;fi
 
 # ARG INSTALL_PYGMENTS=false
 # RUN if [ '${INSTALL_PYGMENTS}' = 'true' ]; then \
-RUN pip install python-pygments
+RUN pip install Pygments
 # ;fi
 
 RUN rm -rf /var/lib/apt/lists/* && \
