@@ -68,10 +68,10 @@ RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h && \
     docker-php-ext-install bcmath && \
     docker-php-ext-install zip && \
     docker-php-ext-install pcntl && \
-    docker-php-ext-install sockets
-#     pecl install mongodb && \
-#     pecl install memcached && \
-#     pecl install redis
+    docker-php-ext-install sockets && \
+    pecl install mongodb && \
+    pecl install memcached && \
+    pecl install redis
 #    pecl install xdebug
 
 RUN pecl install apcu \
