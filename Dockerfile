@@ -36,12 +36,9 @@ RUN apt-get update && \
 
 ARG INSTALL_PYTHON2=false
 RUN if [ ${INSTALL_PYTHON2} = true ]; then \
-    apt-get install python \
-;fi
-
-ARG INSTALL_PIP_PYTHON2=false
-RUN if [ ${INSTALL_PIP_PYTHON2} = true ]; then \
-    apt-get install python-pip \
+    apt-get -y install python python-pip python-dev build-essential  \
+    && python -m pip install --upgrade pip  \
+    && python -m pip install --upgrade virtualenv \
 ;fi
 
 ARG INSTALL_PYGMENTS=false
