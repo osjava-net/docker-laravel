@@ -64,7 +64,8 @@ RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd && \
 RUN docker-php-ext-configure mysqli --with-mysqli=mysqlnd && \
     docker-php-ext-install mysqli
 
-RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg && \
+# RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg && \
+RUN docker-php-ext-configure gd --with-freetype && \
     docker-php-ext-install gd
 
 RUN docker-php-ext-install soap
