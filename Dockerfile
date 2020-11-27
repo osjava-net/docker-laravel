@@ -116,6 +116,8 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod a+rx /entrypoint.sh && \
     chown -R www-data:www-data /var/www
 
+RUN ln -s /usr/lib/git-core/git-http-backend /usr/bin/git-http-backend
+
 WORKDIR /var/www
 
 ENTRYPOINT ["/entrypoint.sh"]
