@@ -34,6 +34,11 @@ RUN apt-get update && \
         cron \
         wget
 
+ARG INSTALL_DOCKER
+RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
+    apt-get -y install docker
+;fi
+
 ARG INSTALL_PYTHON2
 RUN if [ "${INSTALL_PYTHON2}" = "true" ]; then \
     apt-get -y install python python-pip \
