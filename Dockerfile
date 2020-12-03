@@ -34,13 +34,12 @@ RUN apt-get update && \
         cron \
         wget
 
-ADD https://get.docker.com /tmp/get-docker.sh
 ARG INSTALL_DOCKER
 RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
+    wget https://get.docker.com -O /tmp/get-docker.sh \
     chmod a+rx /tmp/get-docker && \
     /tmp/get-docker.sh && \
 ;fi
-RUN rm -f /tmp/get-docker.sh
 
 ARG INSTALL_PYTHON2
 RUN if [ "${INSTALL_PYTHON2}" = "true" ]; then \
