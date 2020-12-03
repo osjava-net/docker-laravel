@@ -36,7 +36,9 @@ RUN apt-get update && \
 
 ARG INSTALL_DOCKER
 RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
-    apt-get -y install docker \
+    curl -fsSL https://get.docker.com -o /tmp/get-docker.sh && \
+    sh /tmp/get-docker.sh && \
+    rm -f /tmp/get-docker.sh \
 ;fi
 
 ARG INSTALL_PYTHON2
