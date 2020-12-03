@@ -36,8 +36,9 @@ RUN apt-get update && \
 
 ARG INSTALL_DOCKER
 RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
-    curl -fsSL https://get.docker.com -o /tmp/get-docker.sh && \
-    sh /tmp/get-docker.sh && \
+    wget https://get.docker.com -O /tmp/get-docker.sh && \
+    chmod a+rx /tmp/get-docker && \
+    /tmp/get-docker.sh && \
     rm -f /tmp/get-docker.sh \
 ;fi
 
@@ -52,8 +53,9 @@ RUN if [ "${INSTALL_PYGMENTS}" = "true" ]; then \
 ;fi
 
 RUN rm -rf /var/lib/apt/lists/* && \
-    rm -rf /etc/supervisor/* && \
-    wget https://getcomposer.org/download/1.9.1/composer.phar -O /usr/local/bin/composer && \
+    rm -rf /etc/supervisor/*
+
+RUN wget https://getcomposer.org/download/1.9.1/composer.phar -O /usr/local/bin/composer && \
     chmod a+rx /usr/local/bin/composer
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
