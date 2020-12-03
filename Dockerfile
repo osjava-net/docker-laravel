@@ -36,7 +36,7 @@ RUN apt-get update && \
 
 ARG INSTALL_DOCKER
 RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
-    apt-get -y install docker
+    apt-get -y install docker \
 ;fi
 
 ARG INSTALL_PYTHON2
