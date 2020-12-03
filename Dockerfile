@@ -36,7 +36,7 @@ RUN apt-get update && \
 
 ARG INSTALL_DOCKER
 RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
-    wget https://get.docker.com -O /tmp/get-docker.sh \
+    wget https://get.docker.com -O /tmp/get-docker.sh && \
     chmod a+rx /tmp/get-docker && \
     /tmp/get-docker.sh && \
 ;fi
