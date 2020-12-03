@@ -35,11 +35,11 @@ RUN apt-get update && \
         wget
 
 ARG INSTALL_DOCKER
-RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
-    wget https://get.docker.com -O /tmp/get-docker.sh && \
+# RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
+RUN wget https://get.docker.com -O /tmp/get-docker.sh && \
     chmod a+rx /tmp/get-docker && \
     /tmp/get-docker.sh \
-;fi
+# ;fi
 
 ARG INSTALL_PYTHON2
 RUN if [ "${INSTALL_PYTHON2}" = "true" ]; then \
