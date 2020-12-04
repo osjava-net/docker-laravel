@@ -36,8 +36,14 @@ RUN apt-get update && \
 
 ARG INSTALL_DOCKER
 RUN if [ "${INSTALL_DOCKER}" = "true"]; then \
-    wget https://get.docker.com -O /tmp/get-docker.sh && \
-    sh /tmp/get-docker.sh \
+    add-apt-repository \
+       "deb [arch=amd64] https://download.docker.com/linux/debian \
+       $(lsb_release -cs) \
+       stable" && \
+    apt-get update && \
+    apt-get install docker-ce docker-ce-cli containerd.io \
+#     wget https://get.docker.com -O /tmp/get-docker.sh && \
+#     sh /tmp/get-docker.sh \
 ;fi
 
 ARG INSTALL_PYTHON2
