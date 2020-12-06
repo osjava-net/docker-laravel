@@ -105,6 +105,8 @@ RUN tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp && \
     rm /tmp/blackfire-probe.tar.gz
 
 ENV LOCALTIME Asia/Shanghai
+ENV APACHE_RUN_USER www
+ENV APACHE_RUN_GROUP www
 ENV HTTPD_CONF_DIR /etc/apache2/conf-enabled/
 ENV HTTPD__DocumentRoot /var/www/html
 ENV HTTPD__LogFormat '"%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" common'
@@ -121,7 +123,7 @@ RUN rm $PHP_INI_DIR/conf.d/docker-php-ext* && \
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod a+rx /entrypoint.sh && \
-    chown -R www-data:www-data /var/www
+    chown -R www:www /var/www
 
 RUN ln -s /usr/lib/git-core/git-http-backend /usr/bin/git-http-backend
 
