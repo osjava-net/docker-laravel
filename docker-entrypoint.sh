@@ -13,16 +13,16 @@ fi
 #if [ -d $SUPERVISOR ]; then
 if [ -d /etc/supervisor/conf.d ]; then
 #    ln -s $SUPERVISOR /etc/supervisor.d
-    supervisord -c /etc/supervisor/supervisord.conf
+    sudo supervisord -c /etc/supervisor/supervisord.conf
 fi
 
 if [ ! -z "$SCHEDULE" ] && [ ! -f /etc/cron.d/app-schedule ]; then
-    echo "* * * * * root $SCHEDULE" >> /etc/cron.d/app-schedule
-    chmod +x /etc/cron.d/app-schedule
+    sudo echo "* * * * * root $SCHEDULE" >> /etc/cron.d/app-schedule
+    sudo chmod +x /etc/cron.d/app-schedule
 fi
 
 if [ -f /etc/cron.d/app-schedule ]; then
-    /etc/init.d/cron start
+    sudo /etc/init.d/cron start
 fi
 
 #
