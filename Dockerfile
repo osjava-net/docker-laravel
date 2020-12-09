@@ -104,6 +104,8 @@ RUN tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp && \
     mv /tmp/blackfire-*.so `php -r "echo ini_get('extension_dir');"`/blackfire.so && \
     rm /tmp/blackfire-probe.tar.gz
 
+RUN a2dismod mpm_prefork && a2enmod mpm_event
+
 ENV LOCALTIME Asia/Shanghai
 ENV HTTPD_CONF_DIR /etc/apache2/conf-enabled/
 ENV HTTPD__DocumentRoot /var/www/html
