@@ -1,3 +1,4 @@
+ENV PHP_EXTRA_CONFIGURE_ARGS --enable-maintainer-zts --with-apxs2 --disable-cgi
 FROM php:7.4-apache
 LABEL maintainer="Shihua <lidapeng@shihuacom.com>"
 
