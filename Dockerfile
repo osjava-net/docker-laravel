@@ -1,7 +1,7 @@
-ENV PHP_EXTRA_CONFIGURE_ARGS --enable-maintainer-zts --with-apxs2 --disable-cgi
 FROM php:7.4-apache
 LABEL maintainer="Shihua <lidapeng@shihuacom.com>"
 
+ENV PHP_EXTRA_CONFIGURE_ARGS --enable-maintainer-zts --with-apxs2 --disable-cgi
 RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list && \
     sed -i 's/security.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list && \
     sed -i 's/security-cdn.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list
