@@ -50,6 +50,11 @@ RUN if [ "${INSTALL_PYGMENTS}" = "true" ]; then \
     pip install Pygments \
 ;fi
 
+ARG INSTALL_FFMPEG
+RUN if [ "${INSTALL_FFMPEG}" = "true" ]; then \
+    apt-get -y install ffmpeg \
+;fi
+
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /etc/supervisor/*
 
