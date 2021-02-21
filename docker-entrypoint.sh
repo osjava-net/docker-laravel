@@ -17,7 +17,7 @@ if [ -d /etc/supervisor/conf.d ]; then
 fi
 
 if [ ! -z "$SCHEDULE" ] && [ ! -f /etc/cron.d/app-schedule ]; then
-    echo "* * * * * root $SCHEDULE" >> /etc/cron.d/app-schedule
+    echo "* * * * * www-data $SCHEDULE" >> /etc/cron.d/app-schedule
     chmod +x /etc/cron.d/app-schedule
 fi
 
